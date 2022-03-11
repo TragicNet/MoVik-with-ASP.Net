@@ -165,7 +165,8 @@ input[type='submit'] {
   .header .logocontainer .logo {
     background-color: #fa372c;
     color: #ffffff;
-    font-weight: bold; }
+    font-weight: bold;
+    padding: 5px 10px; }
     .header .logocontainer .logo .title {
       font-size: 1.75rem; }
     .header .logocontainer .logo .tagline {
