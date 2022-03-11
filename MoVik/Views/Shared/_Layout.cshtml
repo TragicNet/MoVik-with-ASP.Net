@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MoVik</title>
+
+    <link rel="icon" href="~/img/MoVik.ico" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
+    <link rel="stylesheet" href="~/css/style.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MoVik.styles.css" asp-append-version="true" />
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<body>
+    
+    <header class="header">
+        <div class="logocontainer">
+            <a class="logo" asp-area="" asp-controller="Home" asp-action="Index">
+                <div class="title">MoVik</div>
+                <div class="tagline">Your Food is On the Way</div>
+            </a>
+        </div>
+
+        @*<nav class="navbar-expand-sm navbar-toggleable-sm navbar-dark box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MoVik</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>*@
+    </header>
+
+    <div class="navbar">
+        <a class="navitem home" asp-area="" asp-controller="Home" asp-action="Index">MoVik</a>
+        <a class="navitem menu" href="#">Menu</a>
+        <div class="space"></div>
+        <a class="navitem" href="/Identity/Account/Login">Login</a>
+        <a class="navitem" href="/Identity/Account/Register">Register</a>
+        <div class="theme-button">
+            <div class="switch">
+                <input type="checkbox">
+                <div class="slider round"></div>
+            </div>
+        </div>
+    </div>
+
+    <main role="main" class="main">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - MoVik - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <!-- JavaScript/jQuery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

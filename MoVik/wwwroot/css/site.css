@@ -1,0 +1,112 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+a {
+    text-decoration: none;
+    outline: 0;
+    color: inherit;
+}
+
+button {
+    outline: none;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: "Roboto", sans-serif;
+    background-image: url("/img/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+.logocontainer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.navbar .home, .header .logo {
+    background-color: #fa372c;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.header .logo {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.header .logo .title {
+    font-size: 1.75rem;
+}
+
+.header .logo .tagline {
+    margin-top: -5px;
+    font-size: 0.75rem;
+    font-weight: normal;
+}
+
+.navbar {
+    overflow: visible;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    height: 2rem;
+}
+
+div.login-logout-tab div.card-header {
+    padding: 0px 0px 12px 0px;
+}
+
+div.login-logout-tab ul.nav.tabs {
+    padding: 0px 0px -12px 0px;
+}
+
+div.login-logout-tab li.nav-item {
+    width: 50%;
+}
+
+div.login-logout-tab a.nav-link {
+    font-size: 25px;
+    color: #495057;
+    text-align: center;
+}
+
+div.card-content {
+    padding: 10px 20px;
+}
+
+div.login-form-icon {
+    text-align: center;
+}
