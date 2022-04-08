@@ -4,6 +4,25 @@
 // Write your JavaScript code.
 
 var activeClass = null;
+console.log("Hello");
+$(document).ready(function () {
+    {   // Theme Setup
+        var cookieClass = $.cookie("movik-theme");
+        var currentClass = document.documentElement.getAttribute("class");
+        console.log("Cookie: " + cookieClass);
+        console.log("Class: " + currentClass);
+        if (cookieClass == null)
+            $.cookie('movik-theme', currentClass, { path: "/;SameSite=Lax" });
+        else {
+            if (cookieClass != currentClass) {
+                $(document.documentElement).toggleClass('theme-light');
+                $(document.documentElement).toggleClass('theme-dark');
+            }
+        }
+    }
+    document.getElementsByTagName("html")[0].style.visibility = "visible";
+});
+
 $('.navitem').on('mouseenter', function () {
     activeClass = $('.active');
     $('.navitem.active').toggleClass('active');
@@ -20,6 +39,11 @@ $('.theme-button .switch').on('click', function () {
     chkbox.prop('checked', !chkbox.prop('checked'));
     $(document.documentElement).toggleClass('theme-light');
     $(document.documentElement).toggleClass('theme-dark');
+    var currentClass = document.documentElement.getAttribute("class");
+    $.cookie('movik-theme', currentClass, { path: "/;SameSite=Lax" });
+    var cookieClass = $.cookie("movik-theme");
+    console.log("Theme: " + cookieClass);
+    console.log("Current: " + currentClass);
 })
 
 function close(element) {

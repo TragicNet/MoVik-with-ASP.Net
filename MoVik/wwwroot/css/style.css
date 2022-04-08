@@ -4,6 +4,9 @@ $body-color: theme(body-color);*/
 .text {
   color: white; }
 
+html {
+  visibility: hidden; }
+
 * {
   box-sizing: border-box;
   margin: 0;

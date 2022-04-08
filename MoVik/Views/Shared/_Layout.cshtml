@@ -11,6 +11,7 @@
 
     <link rel="icon" href="~/img/MoVik.ico" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -38,7 +39,7 @@
 
     <div class="navbar">
         <a class="navitem home" asp-area="" asp-controller="Home" asp-action="Index">MoVik</a>
-        <a class="navitem menu" href="#">Menu</a>
+        <a class="navitem menu" href="/MenuItems">Menu</a>
         <div class="space"></div>
 
         @if (signInManager.IsSignedIn(User)) {

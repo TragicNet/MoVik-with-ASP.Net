@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using MoVik.Data;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 namespace MoVik
 {
@@ -25,6 +29,9 @@ namespace MoVik
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+
+            services.AddDbContext<MoVikDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("MoVikDbContext")));
             
         }
 
@@ -49,14 +56,31 @@ namespace MoVik
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=MenuItems}/{action=Index}/{id?}");
+                
                 endpoints.MapRazorPages();
+
+                endpoints.MapGet("/Greet", async context =>
+                {
+                    await context.Response.WriteAsync("Hello, World!");
+                });
+
+                endpoints.MapGet("/Greet/{name}", async context =>
+                {
+                    var name = context.GetRouteValue("name");
+                    await context.Response.WriteAsync($"Hello, {name}!");
+                });
+
             });
+
         }
     }
 }

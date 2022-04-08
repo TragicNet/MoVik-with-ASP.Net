@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using MoVik.Models;
 using System;
@@ -16,6 +17,29 @@ namespace MoVik.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }
+
+        public IActionResult Menu()
+        {
+            using var connection = new SqlConnection();
+            connection.Open();
+
+            using var command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandText = "SELECT Username FROM Users;";
+
+            using var reader = command.ExecuteReader();
+
+            List<MenuItem> menuItems = new List<MenuItem>();
+
+            while (reader.Read())
+            {
+                string name = reader.GetString(0);
+                menuItems.Add(new MenuItem { Name = name });
+            }
+
+            
+            return View(menuItems);
         }
 
         public IActionResult Index()
