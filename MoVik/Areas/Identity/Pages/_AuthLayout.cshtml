@@ -1,31 +1,90 @@
-﻿@{
-    Layout = "/Views/Shared/_Layout.cshtml";
-}
+﻿@using Microsoft.AspNetCore.Identity
+@using MoVik.Areas.Identity.Data
+@inject SignInManager<ApplicationUser> signInManager;
 
-<div class="row">
-    <div class="col-md-6 offset-md-3">
-        <div class="card login-logout-tab">
-            <div class="card-header">
-                <ul class"nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Identity/Account/Login">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Identity/Account/Register">Sign Up</a>
-                    </li>
-                </ul>
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MoVik</title>
+
+    <link rel="icon" href="~/img/MoVik.ico" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
+    <link rel="stylesheet" href="~/css/style.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MoVik.styles.css" asp-append-version="true" />
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<body>
+
+    <header class="header">
+        <div class="logocontainer">
+            <a class="logo" asp-area="" asp-controller="Home" asp-action="Index">
+                <div class="title">MoVik</div>
+                <div class="tagline">Your Food is On the Way</div>
+            </a>
+        </div>
+    </header>
+
+    <div class="navbar">
+        <a class="navitem home" asp-area="" asp-controller="Home" asp-action="Index">MoVik</a>
+        <a class="navitem menu" href="/MenuItems">Menu</a>
+        <div class="space"></div>
+
+        @if (signInManager.IsSignedIn(User))
+        {
+<a class="navitem" href="#">Account</a>
+
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@ViewBag.GB">
+                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                </form> }
+            else
+            {
+<a class="navitem" href="/Identity/Account/Register">Register</a>
+                <a class="navitem" href="/Identity/Account/Login">Login</a>}
+
+        <div class="theme-button">
+            <div class="switch">
+                <input type="checkbox">
+                <div class="slider round"></div>
             </div>
-            <div class="card-content">
-                <div class="row">
-                    <div class="col-md-12">
-                        @RenderBody()
-                    </div>
+        </div>
+    </div>
+
+
+    <div class="login register active">
+        <div class="container">
+            <div class="content">
+                <div class="login-form">
+                    @RenderBody()
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@section Scripts{
-    @RenderSection("Scripts", required: false)
-}
+    <main role="main" class="main">
+    </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - MoVik - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <!-- JavaScript/jQuery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
